@@ -4,10 +4,25 @@ import Body from './Body';
 import ThemeSwitcher from './ThemeSwitcher';
 import CardSwitcher from './CardSwitcher';
 import { fetchData } from '../CardDataUtils';
+import { ReactComponent as LoadingImage } from '../images/loading.svg';
 
 // EmptyBoxコンポーネントを実装してローディングイメージを中心に表示しましょう。
 const EmptyBox = () => {
-  
+  const loadingStyle = {
+    display: "flex",
+    flexDirection: "column",
+    maxWidth: 614,
+    width: "100%",
+    border: "1px solid #e6e6e6",
+    borderRadius: "5px"
+  }
+  return (
+    <article className="insta-card">
+      <div style={loadingStyle}>
+        <LoadingImage />
+      </div>
+    </article>
+  )
 }
 
 export default class extends Component {
@@ -55,11 +70,12 @@ export default class extends Component {
         <Header 
           theme={theme}
           data={data}
+          chosenId={chosenId}
         />
         <Body 
           theme={theme}
-          isLoading={isLoading}
           data={data}
+          chosenId={chosenId}
           />
       </article>
     );
@@ -69,14 +85,12 @@ export default class extends Component {
           <p>- テーマを選択してください。</p>
           <ThemeSwitcher 
             theme={theme}
-            data={data}
             switchTheme={this.onSwitchTheme} />
         </div>
         <div style={{ marginBottom: 14 }}>
           <p>- 表示するカードを選択してください。</p>
           <CardSwitcher 
             chosenId={chosenId}
-            data={data}
             switchCard={this.onSwitchCard} 
             />
         </div>
