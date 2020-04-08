@@ -10,9 +10,10 @@ import { ReactComponent as LoadingImage } from '../images/loading.svg';
 const EmptyBox = () => {
   const loadingStyle = {
     display: "flex",
-    flexDirection: "column",
-    maxWidth: 614,
-    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "614px",
+    height: "614px",
     border: "1px solid #e6e6e6",
     borderRadius: "5px"
   }
@@ -22,7 +23,7 @@ const EmptyBox = () => {
         <LoadingImage />
       </div>
     </article>
-  )
+  );
 }
 
 export default class extends Component {
@@ -65,20 +66,25 @@ export default class extends Component {
     if (theme === 'dark') {
       instaCardClass = "insta-card insta-card-dark"
     }
-    let articlePart = (
-      <article className={instaCardClass}>
-        <Header 
-          theme={theme}
-          data={data}
-          chosenId={chosenId}
-        />
-        <Body 
-          theme={theme}
-          data={data}
-          chosenId={chosenId}
+    let articlePart;
+    if(isLoading === false){
+      articlePart = (
+        <article className={instaCardClass}>
+          <Header 
+            theme={theme}
+            data={data}
+            chosenId={chosenId}
           />
-      </article>
-    );
+          <Body 
+            theme={theme}
+            data={data}
+            chosenId={chosenId}
+            />
+        </article>
+        );
+    } else {
+      articlePart = <EmptyBox />
+    }
     return (
       <div className="card-wrapper">
         <div style={{ marginBottom: 7 }}>
@@ -99,4 +105,3 @@ export default class extends Component {
     );
   }
 }
-
