@@ -31,7 +31,8 @@ export default class extends Component {
     theme: 'light',
     chosenId: 1,
     isLoading: true,
-    data: null
+    data: null,
+    loadedOnce: false
   }
 
   componentDidMount() {
@@ -52,7 +53,19 @@ export default class extends Component {
   onSwitchCard = (id, e = null) => {
     if (e) e.preventDefault();
     // 与えられたidをもとに必要ならデータを再取得します。
-    this.setState({ id })
+    const {data} = this.state;
+    if (id === data.id || !id) return;
+    this.setState({
+      chosenId: id,
+      isLoading: true
+    })
+    fetchData(id).then((data) => { 
+      this.setState({
+        isLoading: false,
+        data,
+        loadedOnce: true
+      })
+    }) 
   }
 
   render() {
@@ -60,7 +73,8 @@ export default class extends Component {
       theme, 
       chosenId,
       isLoading,
-      data
+      data,
+      loadedOnce
     } = this.state;
     let instaCardClass = "insta-card";
     if (theme === 'dark') {
@@ -74,11 +88,13 @@ export default class extends Component {
             theme={theme}
             data={data}
             chosenId={chosenId}
+            loadedOnce={loadedOnce}
           />
           <Body 
             theme={theme}
             data={data}
             chosenId={chosenId}
+            loadedOnce={loadedOnce}
             />
         </article>
         );
@@ -97,6 +113,7 @@ export default class extends Component {
           <p>- 表示するカードを選択してください。</p>
           <CardSwitcher 
             chosenId={chosenId}
+            loadedOnce={loadedOnce}
             switchCard={this.onSwitchCard} 
             />
         </div>
