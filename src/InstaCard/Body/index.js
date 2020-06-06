@@ -22,12 +22,14 @@ const Body = ({ theme, chosenId, data }) => {
   </section>
 )}
 
-Comment.propTypes = {
-  theme: PropTypes.string.isRequired
+Comment.propTypes = {// ここも以下のdefaultPropsに応じて追加が必要そうですね
+  theme: PropTypes.string.isRequired,
+  chosenId: PropTypes.number.isRequired
 }
 
-Comment.defaultProps = {
+Comment.defaultProps = {// デフォルトの画像指定もしておいた方が良さそうですね
   theme: "light",
+  chosenId: 1
 }
 
 export default Body;
