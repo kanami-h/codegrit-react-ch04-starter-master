@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BodyMain from './Main';
-import cardDataOne from '../../CardDataUtils';
-import cardDataTwo from '../../CardDataUtils';
+import CardOne from '../../images/image-one.jpg';
 
 const Body = ({ theme, chosenId, data }) => {
   console.log(chosenId)
@@ -13,7 +12,7 @@ const Body = ({ theme, chosenId, data }) => {
   // returnでJSXを書く前の範囲で、console.log(chosenId); と検証してみてください。選択されたカードのidがコンソールに出ると思います
   <section className="card-body">
     <div className="card-image">
-      <img alt="メイン画像" src={data} />
+      <img alt="メイン画像" src={ imageUrl } />
     </div>
     <BodyMain 
       theme={theme}
@@ -26,17 +25,13 @@ const Body = ({ theme, chosenId, data }) => {
 Comment.propTypes = {// ここも以下のdefaultPropsに応じて追加が必要そうですね
   theme: PropTypes.string.isRequired,
   chosenId: PropTypes.number.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  data: PropTypes.isRequired,
-  loadedOnce: PropTypes.array.isRequired
+  data: PropTypes.object.isRequired
 }
 
 Comment.defaultProps = {// デフォルトの画像指定もしておいた方が良さそうですね
   theme: "light",
   chosenId: 1,
-  isLoading: true,
-  data: null,
-  loadedOnce: false
+  data: CardOne
 }
 
 export default Body;
