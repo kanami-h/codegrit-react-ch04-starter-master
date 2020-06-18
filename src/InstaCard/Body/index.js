@@ -30,8 +30,9 @@ Comment.propTypes = {// ここも以下のdefaultPropsに応じて追加が必�
 
 Comment.defaultProps = {// デフォルトの画像指定もしておいた方が良さそうですね
   theme: "light",
-  chosenId: 1,
-  data: CardOne
+  data: {
+    imageUrl: CardOne
+  }
 }
 
 export default Body;
