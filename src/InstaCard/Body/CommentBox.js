@@ -6,6 +6,9 @@ export default class extends Component {
   }
   componentDidUpdate(prevProps) {
     // chosenIdが変わったらコメントを空にしましょう。
+    if(this.props.chosenId !== prevProps.choosenId) {
+      this.fetchData(this.props.choosenId)
+    }
   }
 
   render() {
