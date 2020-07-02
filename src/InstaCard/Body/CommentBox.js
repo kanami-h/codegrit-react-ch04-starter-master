@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class extends Component {
   state = {
@@ -6,8 +7,12 @@ export default class extends Component {
   }
   componentDidUpdate(prevProps) {
     // chosenIdが変わったらコメントを空にしましょう。
+    console.log(prevProps);
+    console.log(this.props);
     if(this.props.chosenId !== prevProps.choosenId) {
-      this.fetchData(this.props.choosenId)
+      this.setState({
+        comment: " "
+      })
     }
   }
 
@@ -19,4 +24,13 @@ export default class extends Component {
       </section>
     );
   }
+}
+
+Component.propTypes = {
+  comment: PropTypes.string.isRequired,
+  chosenId: PropTypes.number.isRequired,
+}
+
+Component.defaultProps = {
+  comment: "実はコメントを書いているところです"
 }
