@@ -25,8 +25,7 @@ export default class extends Component {
       </section>
     );
   }
-<<<<<<< HEAD
-  
+ 
   static propTypes = {
     comment: PropTypes.string.isRequired,
     chosenId: PropTypes.number.isRequired,
