@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class extends Component {
   state = {
     comment: "実はコメントを書いているところです。"
   }
+
   componentDidUpdate(prevProps) {
     // chosenIdが変わったらコメントを空にしましょう。
-    if(this.props.chosenId !== prevProps.choosenId) {
-      this.fetchData(this.props.choosenId)
+    console.log(prevProps);
+    console.log(this.props);
+    if(this.props.chosenId !== prevProps.chosenId) {
+      this.setState({
+        comment: "　"
+      })
     }
   }
 
@@ -18,5 +24,14 @@ export default class extends Component {
         <div className="comment-area">{comment === '' ? "コメントする" : comment}</div>
       </section>
     );
+  }
+  
+  static propTypes = {
+    comment: PropTypes.string.isRequired,
+    chosenId: PropTypes.number.isRequired,
+  }
+  
+  static defaultProps = {
+    comment: "コメントを書いているところです"
   }
 }
