@@ -1,11 +1,13 @@
 import React from 'react';
 import Comment from './Comment';
 
-const Comments = () => (
+const Comments = ({ data }) => (
   <ul className="comments">
     <Comment
-      username="testuser1"
-      comment="This is the insta-card!" />
+      username={
+        id === 1 ? cardDataOne : cardDataTwo
+      }
+      comment={} />
     <Comment
       username="testuser2"
       comment="So cool!" />
