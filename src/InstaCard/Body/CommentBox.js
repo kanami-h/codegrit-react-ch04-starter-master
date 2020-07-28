@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class extends Component {
+  static propTypes = {
+    comment: PropTypes.string,
+    chosenId: PropTypes.number,
+  }
+  static defaultProps = {
+    chosenId: 1
+  }
   state = {
     comment: "実はコメントを書いているところです。"
   }
@@ -12,7 +19,7 @@ export default class extends Component {
     console.log(this.props);
     if(this.props.chosenId !== prevProps.chosenId) {
       this.setState({
-        comment: "　"
+        comment: ""
       })
     }
   }
@@ -24,14 +31,5 @@ export default class extends Component {
         <div className="comment-area">{comment === '' ? "コメントする" : comment}</div>
       </section>
     );
-  }
- 
-  static propTypes = {
-    comment: PropTypes.string.isRequired,
-    chosenId: PropTypes.number.isRequired,
-  }
-  
-  static defaultProps = {
-    comment: "コメントを書いているところです"
   }
 }
