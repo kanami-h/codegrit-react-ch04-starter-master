@@ -17,16 +17,12 @@ const Comments = ({ data }) => {
 }
 
 Comments.propTypes = {
-  data: {
-    commentOne: {
-      poster: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired
-    },
-    commentTwo: {
+  data: [
+     {
       poster: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired
     }
-  } 
+  ]
 }
 
 Comments.defaultProps = {
